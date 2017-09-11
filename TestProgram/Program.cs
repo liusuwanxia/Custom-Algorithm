@@ -9,8 +9,7 @@ namespace TestProgram
         static void Main(string[] args)
         {
             int[] arr = { 3, 4, 5, 1, 2, 7 };
-            Node maxTree = StackProblem.GetMaxTree(arr);
-            Console.WriteLine(maxTree);
+            Console.WriteLine(StackProblem.GetSubArrayCountByMaxAndMin(arr, 2));
         }
     }
 }

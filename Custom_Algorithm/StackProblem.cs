@@ -232,5 +232,64 @@ namespace Custom_Algorithm
 
             return area;
         }
+
+        /// <summary>
+        /// 最大值减去最小值小于或等于num的子数组数量 
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <param name="threshold"></param>
+        /// <returns></returns>
+        public static int GetSubArrayCountByMaxAndMin(int[] arr, int threshold)
+        {
+            if (arr == null || arr.Length == 0)
+            {
+                return 0;
+            }
+
+            LinkedList<int> maxWindow = new LinkedList<int>();
+            LinkedList<int> minWindow = new LinkedList<int>();
+
+            int start = 0;
+            int end = 0;
+            int count = 0;
+
+            while (start < arr.Length)
+            {
+                while (end < arr.Length)
+                {
+                    while (maxWindow.Count != 0 && arr[maxWindow.Last.Value] <= arr[end])
+                    {
+                        maxWindow.RemoveLast();
+                    }
+                    maxWindow.AddLast(end);
+
+                    while (minWindow.Count != 0 && arr[minWindow.Last.Value] >= arr[end])
+                    {
+                        minWindow.RemoveLast();
+                    }
+                    minWindow.AddLast(end);
+
+                    if (arr[maxWindow.First.Value] - arr[minWindow.First.Value] > threshold)
+                    {
+                        break;
+                    }
+                    end++;
+                }
+
+                if (minWindow.First.Value == start)
+                {
+                    minWindow.RemoveFirst();
+                }
+                if (maxWindow.First.Value == start)
+                {
+                    maxWindow.RemoveFirst();
+                }
+                count += end - start;
+                start++;
+            }
+
+            return count;
+            
+        }
     }
 }
