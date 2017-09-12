@@ -88,27 +88,27 @@ namespace Custom_Algorithm
         /// </summary>
         /// <param name="arr"></param>
         /// <returns></returns>
-        public static Node GetMaxTree(int[] arr)
+        public static BinaryTreeNode GetMaxTree(int[] arr)
         {
-            Node root = null;
+            BinaryTreeNode root = null;
 
-            Node[] nodeList = new Node[arr.Length];
+            BinaryTreeNode[] nodeList = new BinaryTreeNode[arr.Length];
             for (int i = 0; i < nodeList.Length; i++)
             {
-                nodeList[i] = new Node(arr[i]);
+                nodeList[i] = new BinaryTreeNode(arr[i]);
             }
 
-            Stack<Node> nodeStack = new Stack<Node>();  //Use to find nearest bigger item
+            Stack<BinaryTreeNode> nodeStack = new Stack<BinaryTreeNode>();  //Use to find nearest bigger item
 
-            Dictionary<Node, Node> leftFirstBigger = new Dictionary<Node, Node>();
-            Dictionary<Node, Node> rightFirstBigger = new Dictionary<Node, Node>();
+            Dictionary<BinaryTreeNode, BinaryTreeNode> leftFirstBigger = new Dictionary<BinaryTreeNode, BinaryTreeNode>();
+            Dictionary<BinaryTreeNode, BinaryTreeNode> rightFirstBigger = new Dictionary<BinaryTreeNode, BinaryTreeNode>();
 
             for (int i = 0; i < nodeList.Length; i++)
             {
                 while (nodeStack.Count != 0 && nodeStack.Peek().data < nodeList[i].data)
                 {
-                    Node popNode = nodeStack.Pop();
-                    Node leftFirstBiggerNode = nodeStack.Count == 0 ? null : nodeStack.Peek();
+                    BinaryTreeNode popNode = nodeStack.Pop();
+                    BinaryTreeNode leftFirstBiggerNode = nodeStack.Count == 0 ? null : nodeStack.Peek();
                     leftFirstBigger.Add(popNode, leftFirstBiggerNode);
                     rightFirstBigger.Add(popNode, nodeList[i]);
                 }
@@ -118,17 +118,17 @@ namespace Custom_Algorithm
 
             while (nodeStack.Count != 0)
             {
-                Node popNode = nodeStack.Pop();
-                Node leftFirstBiggerNode = nodeStack.Count == 0 ? null : nodeStack.Peek();
+                BinaryTreeNode popNode = nodeStack.Pop();
+                BinaryTreeNode leftFirstBiggerNode = nodeStack.Count == 0 ? null : nodeStack.Peek();
                 leftFirstBigger.Add(popNode, leftFirstBiggerNode);
                 rightFirstBigger.Add(popNode, null);
             }
 
             for (int i = 0; i < nodeList.Length; i++)
             {
-                Node curNode = nodeList[i];
-                Node leftFirstBiggerNode = leftFirstBigger[curNode];
-                Node rightFirstBiggerNode = rightFirstBigger[curNode];
+                BinaryTreeNode curNode = nodeList[i];
+                BinaryTreeNode leftFirstBiggerNode = leftFirstBigger[curNode];
+                BinaryTreeNode rightFirstBiggerNode = rightFirstBigger[curNode];
 
                 if (leftFirstBiggerNode == null && rightFirstBiggerNode == null)
                 {
@@ -158,7 +158,7 @@ namespace Custom_Algorithm
                 }
                 else
                 {
-                    Node parent = leftFirstBiggerNode.data > rightFirstBiggerNode.data ? rightFirstBiggerNode : leftFirstBiggerNode;
+                    BinaryTreeNode parent = leftFirstBiggerNode.data > rightFirstBiggerNode.data ? rightFirstBiggerNode : leftFirstBiggerNode;
                     if (parent.left == null)
                     {
                         parent.left = curNode;

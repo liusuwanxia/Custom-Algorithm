@@ -9,13 +9,13 @@ namespace Custom_Algorithm
     /// <summary>
     /// 二叉树结点类
     /// </summary>
-    public class Node
+    public class BinaryTreeNode
     {
-        public Node left;
-        public Node right;
+        public BinaryTreeNode left;
+        public BinaryTreeNode right;
         public int data;
 
-        public Node(int value)
+        public BinaryTreeNode(int value)
         {
             this.data = value;
         }

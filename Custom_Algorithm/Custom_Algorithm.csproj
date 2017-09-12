@@ -42,11 +42,13 @@
   <ItemGroup>
     <Compile Include="BreadthFirstSearch.cs" />
     <Compile Include="HanoiProblem.cs" />
-    <Compile Include="Node.cs" />
+    <Compile Include="LinkedListProblem.cs" />
+    <Compile Include="BinaryTreeNode.cs" />
     <Compile Include="PetQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueueProblem.cs" />
     <Compile Include="Search.cs" />
+    <Compile Include="LinkedListNode.cs" />
     <Compile Include="Sort.cs" />
     <Compile Include="StackProblem.cs" />
     <Compile Include="StackWithMinValue.cs" />
